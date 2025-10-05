@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // INSERT nuevo
-        $sql = "INSERT INTO empresas 
+        $sql = "INSERT INTO empresas
         (usuario_id, nombre, cuit, email, telefono, direccion, rubro, descripcion, sitio_web, cuenta_bancaria, logo, logo_tipo)
         VALUES ('$user_id','$nombre','$cuit','$email','$telefono','$direccion','$rubro','$descripcion',
         '$sitio_web','$cuenta_bancaria','$logo_data','$logo_tipo')";

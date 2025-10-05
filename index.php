@@ -1,9 +1,4 @@
 <?php
-// Debug activable (comentar en producción)
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 session_start();
 include("config/db.php");
 
@@ -37,34 +32,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - EcoPrima</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
 </head>
-<body class="login-bg">
+<body>
 
-<div class="auth-box">
-  <h3 class="text-center mb-4">🌱 EcoPrima Marketplace</h3>
-
-  <?php if (!empty($error)): ?>
-    <div class="alert alert-danger"><?= $error ?></div>
-  <?php endif; ?>
-
-  <form method="POST">
-    <div class="mb-3">
-      <label class="form-label">Correo electrónico</label>
-      <input type="email" name="email" class="form-control" required>
+<div class="auth-wrapper">
+  <div class="auth-box">
+    <div class="logo">
+      <span class="leaf">🌱</span> EcoPrima
     </div>
-    <div class="mb-3">
-      <label class="form-label">Contraseña</label>
-      <input type="password" name="password" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-success w-100">Ingresar</button>
-  </form>
 
-  <div class="text-center mt-3">
-    <a href="registro.php" class="btn btn-link">Registrarse</a><br>
-    <a href="reset.php">¿Olvidaste tu clave?</a>
+    <?php if (!empty($error)): ?>
+      <div class="alert alert-danger"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></div>
+    <?php endif; ?>
+
+    <form method="POST">
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+    </form>
+
+    <div class="footer-links">
+      <a href="registro.php">Registrarse</a>
+      <span class="separator">|</span>
+      <a href="reset.php">¿Olvidaste tu clave?</a>
+    </div>
   </div>
 </div>
 
