@@ -87,3 +87,38 @@ body {
     margin: 0 0.5rem;
     color: #ccc;
 }
+
+/* Background Image Styles */
+.bg-main, .bg-marketplace, .bg-register {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.bg-main::before, .bg-marketplace::before, .bg-register::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.auth-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.bg-main {
+    background-image: url('../images/backgrounds/bg_main.png');
+}
+
+.bg-marketplace {
+    background-image: url('../images/backgrounds/bg_marketplace.png');
+}
+
+.bg-register {
+    background-image: url('../images/backgrounds/bg_register.png');
+}
