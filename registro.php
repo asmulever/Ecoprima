@@ -4,12 +4,17 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+session_start();
 include("config/db.php");
 
 $error = "";
 $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (!isset($_POST['csrf_token']) || !isset($_SESSION['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die('Error de validación CSRF.');
+    }
+
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
@@ -48,6 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
     }
+}
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
 <!DOCTYPE html>
@@ -89,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   <?php if (empty($msg)): ?>
     <form method="POST">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
       <div class="mb-3">
         <label class="form-label">Correo electrónico</label>
         <input type="email" name="email" class="form-control" required>
