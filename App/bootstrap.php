@@ -21,5 +21,10 @@ spl_autoload_register(function (string $class): void {
 });
 
 use App\Infrastructure\Config\Config;
+use App\Security\SecurityHeaders;
 
 Config::load(dirname(APP_BASE_PATH) . '/.env');
+
+if (php_sapi_name() !== 'cli') {
+    SecurityHeaders::apply();
+}

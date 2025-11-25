@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    $stmt = $mysqli->prepare("SELECT id, password_hash, estado FROM usuarios WHERE email=? LIMIT 1");
+    $stmt = $mysqli->prepare("SELECT id, password_hash, estado, rol FROM usuarios WHERE email=? LIMIT 1");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Guardar sesión
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email']   = $email;
+            $_SESSION['rol']     = $row['rol'];
 
             // En debug mostramos todo en lugar de redirigir
             echo "<h2>✅ Sesión iniciada correctamente</h2>";

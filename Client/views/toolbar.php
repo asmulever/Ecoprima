@@ -25,12 +25,17 @@
         </li>
       </ul>
       <ul class="navbar-nav">
+        <?php $isAdmin = isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'; ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo htmlspecialchars($_SESSION['email'] ?? 'Usuario', ENT_QUOTES, 'UTF-8'); ?>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="dashboard.php">Mi Perfil</a></li>
+            <?php if ($isAdmin): ?>
+            <li><a class="dropdown-item" href="usuarios_abm.php">Mi Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <?php endif; ?>
+            <li><a class="dropdown-item" href="dashboard.php">Inicio</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-danger" href="logout.php">Salir</a></li>
           </ul>

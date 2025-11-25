@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $stmt = $mysqli->prepare("SELECT id, password_hash FROM usuarios WHERE email=? AND estado='activo'");
+    $stmt = $mysqli->prepare("SELECT id, password_hash, rol FROM usuarios WHERE email=? AND estado='activo'");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $row['password_hash'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email'] = $email;
+            $_SESSION['rol'] = $row['rol'];
             header("Location: App/dashboard.php");
             exit;
         } else {
