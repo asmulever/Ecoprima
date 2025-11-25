@@ -1,0 +1,254 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0b3d2e, #14532d, #39a845);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.login-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #14532d;
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-box button {
+  background: #2e4d2f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 95%;
+  margin-top: 10px;
+}
+
+.login-box button:hover {
+  background: #3c613d;
+}
+
+.login-box p {
+  margin-top: 15px;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.dashboard {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.dashboard h1 {
+  color: #14532d;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin: 10px 0;
+}
+
+.menu a {
+  display: block;
+  padding: 10px;
+  border-radius: 6px;
+  background: #2e4d2f;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.menu a:hover {
+  background: #3c613d;
+}
+
+.abm-form {
+  margin: 20px auto;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  text-align: left;
+}
+.abm-form input, 
+.abm-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.abm-form button {
+  background: #14532d;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.abm-form button:hover {
+  background: #1f7a3f;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+table th {
+  background: #2e4d2f;
+  color: #fff;
+}
+
+.filtros {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.filtros input, .filtros select, .filtros button, .filtros .btn-reset {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.filtros button {
+  background: #14532d;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+.filtros .btn-reset {
+  background: #ccc;
+  text-decoration: none;
+  color: black;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.card h3 {
+  margin-top: 0;
+  color: #14532d;
+}
+.card .imagenes {
+  display: flex;
+  gap: 5px;
+  margin: 10px 0;
+}
+.card .imagenes img {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.card details {
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+table th {
+  background: #2e4d2f;
+  color: #fff;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.grid-2 div {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / span 2;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.abm-form textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+/body.login-bg {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end; /* alinea la caja a la derecha */
+  align-items: center;       /* centrado vertical */
+
+  background: url('../background/background_login_optimized.jpg') no-repeat center center fixed;
+  background-size: cover; /* ocupa toda la pantalla sin bandas negras */
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-right: 5%; /* separa la caja del borde derecho */
+}
+
+/* Fondo para dashboard */
+body.dashboard-bg {
+  background: url('../background/background_dashboard.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+

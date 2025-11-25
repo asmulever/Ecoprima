@@ -1,0 +1,73 @@
+# =========================================================
+# EcoMarket .htaccess - versión híbrida compatible
+# =========================================================
+
+# --- Seguridad básica ---
+<FilesMatch "^(web\.config|\.env|composer\.(json|lock)|package\.json|yarn\.lock|phpunit\.xml)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# --- Rendimiento (cache estáticos 30 días) ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault A0
+  ExpiresByType image/gif A2592000
+  ExpiresByType image/png A2592000
+  ExpiresByType image/jpeg A2592000
+  ExpiresByType text/css A2592000
+  ExpiresByType text/javascript A2592000
+  ExpiresByType application/javascript A2592000
+  ExpiresByType font/otf A2592000
+  ExpiresByType font/ttf A2592000
+  ExpiresByType font/woff A2592000
+  ExpiresByType font/woff2 A2592000
+</IfModule>
+
+# --- Compresión (si está habilitado) ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Errores personalizados básicos ---
+ErrorDocument 401 "Unauthorized"
+ErrorDocument 403 "Forbidden"
+ErrorDocument 404 /index.php
+
+# --- Seguridad extra (headers simples y compatibles) ---
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# --- Reescrituras ---
+RewriteEngine On
+RewriteBase /
+
+# Mantener headers de Site.pro
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+RewriteCond %{HTTP:X-Server-Addr} ^(.*)
+RewriteRule .* - [e=HTTP_X_SERVER_ADDR:%1]
+RewriteRule ^\.well-known/.+ - [L]
+
+# Página principal
+DirectoryIndex index.php index.html
+
+# Redirigir solo si no es archivo ni directorio real
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ sitepro/$1 [L,QSA]
+
+# --- Config extra ---
+php_value display_errors On
+php_value date.timezone America/Argentina/Buenos_Aires
