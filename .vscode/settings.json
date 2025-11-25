@@ -10,20 +10,6 @@
             "server": "db",
             "port": 3306,
             "driver": "MySQL",
-            "name": "localDB",
-            "username": "finhub",
-            "database": "finhub"
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "ssh": "Disabled",
-            "previewLimit": 50,
-            "server": "db",
-            "port": 3306,
-            "driver": "MySQL",
             "name": "rootdb",
             "database": "finhub",
             "username": "root"
@@ -38,9 +24,9 @@
             "server": "db",
             "port": 3306,
             "driver": "MySQL",
+            "username": "root",
             "name": "rootEcodb",
-            "database": "ecoprima",
-            "username": "root"
+            "database": "ecoprima"
         }
     ]
 }

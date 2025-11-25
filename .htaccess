@@ -63,6 +63,11 @@ RewriteRule ^\.well-known/.+ - [L]
 # Página principal
 DirectoryIndex index.php index.html
 
+# Front controller de vistas (App legacy y /app/*)
+RewriteRule ^App/([^/]+)\.php$ app.php?route=$1 [L,QSA]
+RewriteRule ^app/?$ app.php [L,QSA]
+RewriteRule ^app/([^/]+)/?$ app.php?route=$1 [L,QSA]
+
 # Redirigir solo si no es archivo ni directorio real
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
